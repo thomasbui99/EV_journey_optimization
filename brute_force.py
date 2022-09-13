@@ -6,8 +6,8 @@ socL = 30       #Final state of charge (%)
 L = 500         #Total length of the trip (km)
 r = 1           #Charging rate (%/min)
 c = 1           #Energy consumption of the car (%/km)
-x = [150,450]   #List containing each power station's position
-N = len(x)
+x = [0,150,450,L]   #List containing each power station's position
+N = len(x)-1
 v = 130         #Constant speed of the vehicle
 tau = [45, 20]  #List containing each power station's waiting time
 
