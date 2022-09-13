@@ -1,15 +1,15 @@
 from itertools import product
 from xmlrpc.client import MAXINT
 
-soc0 = 100           #Initial state of charge (%)
-socL = 30           #Final state of charge (%)
-L = 500             #Total length of the trip (km)
-r = 40               #Charging rate (%/h)
-c = 0.25               #Energy consumption of the car (%/km)
-x = [0, 150, 450, L]   #List containing each power station's position (km)
+soc0 = 100                  #Initial state of charge (%)
+socL = 30                   #Final state of charge (%)
+L = 500                     #Total length of the trip (km)
+r = 40                      #Charging rate (%/h)
+c = 0.25                    #Energy consumption of the car (%/km)
+x = [0, 150, 450, L]        #List containing each power station's position (km)
 N = len(x)-2
-v = 100          #Constant speed of the vehicle (km/h)
-tau = [0, 0.75, 0.33, 0]      #List containing each power station's waiting time (h)
+v = 100                     #Constant speed of the vehicle (km/h)
+tau = [0, 0.75, 0.33, 0]    #List containing each power station's waiting time (h)
 
 
 def temps(I):
