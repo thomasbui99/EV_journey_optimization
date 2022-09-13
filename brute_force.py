@@ -1,15 +1,15 @@
-from itertools import combinations_with_replacement
+from itertools import product
 from xmlrpc.client import MAXINT
 
-soc0 = 50       #Initial state of charge (%)
-socL = 30       #Final state of charge (%)
-L = 500         #Total length of the trip (km)
-r = 1           #Charging rate (%/min)
-c = 1           #Energy consumption of the car (%/km)
-x = [0,150,450,L]   #List containing each power station's position
-N = len(x)-1
-v = 130         #Constant speed of the vehicle
-tau = [45, 20]  #List containing each power station's waiting time
+soc0 = 100           #Initial state of charge (%)
+socL = 30           #Final state of charge (%)
+L = 500             #Total length of the trip (km)
+r = 40               #Charging rate (%/h)
+c = 0.25               #Energy consumption of the car (%/km)
+x = [0, 150, 450, L]   #List containing each power station's position (km)
+N = len(x)-2
+v = 100          #Constant speed of the vehicle (km/h)
+tau = [0, 0.75, 0.33, 0]      #List containing each power station's waiting time (h)
 
 
 def temps(I):
@@ -19,7 +19,7 @@ def temps(I):
         T += (x[k] - x[k-1])/v
         if I[k] == 1:
             soc_obj = min(100, socL + (L-x[k])*c)
-            T += (soc_obj - soc)/r
+            T += (soc_obj - soc)/r + tau[k]
             soc = soc_obj
     return T
 
@@ -35,7 +35,8 @@ def acceptable(I):
     return soc - socL > 0
 
 def generate():
-    temp = combinations_with_replacement([0,1],N)
+    temp = product([0,1], repeat = N)
+    print(list(temp))
     return list(temp)
 
 def optimize(x, tau):
@@ -47,3 +48,6 @@ def optimize(x, tau):
             if newT < minT:
                 (minT, minI) = (newT, I)
     return (minT, minI)
+
+
+print(optimize(x, tau))
