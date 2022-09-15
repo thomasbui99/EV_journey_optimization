@@ -121,6 +121,7 @@ def modif(I, p):
     return I
 
 # Algorithm of the simulated annealing
+# Hyperparameters (1e-3, 100 and 0.99) can be modified 
 def annealing(x, tau):
     I = initial()
     minI = list(I)
