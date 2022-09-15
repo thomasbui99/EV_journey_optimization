@@ -40,8 +40,6 @@ def time(I):
     return T
 
 # Check the satisfiability of a candidate
-
-
 def acceptable(I):
     soc = soc0
     for k in range(1, N+1):
@@ -54,15 +52,11 @@ def acceptable(I):
     return soc - socL >= 0
 
 # Generate all the possible combinations
-
-
 def generate():
     temp = product([0, 1], repeat=N)
     return list(temp)
 
 # Find the optimal solution by brute force
-
-
 def optimize(x, tau):
     listI = generate()
     (minT, minI) = (inf, None)
@@ -75,8 +69,6 @@ def optimize(x, tau):
     return (minI, minT)
 
 # Convert format I to a list of stations where to stop
-
-
 def convert(I):
     l = []
     for i in range(len(I)):
@@ -103,8 +95,6 @@ def penalty(I):
 
 # Create an initial choice of stations:
 # We stop when we are going to be out of battery and cannot reach the next station
-
-
 def initial():
     I = []
     soc = soc0
@@ -123,8 +113,6 @@ def initial():
     return I
 
 # Modify the choice of stations randomly
-
-
 def modif(I, p):
     val = random.random()
     if val <= p:
@@ -133,8 +121,6 @@ def modif(I, p):
     return I
 
 # Algorithm of the simulated annealing
-
-
 def annealing(x, tau):
     I = initial()
     minI = list(I)
